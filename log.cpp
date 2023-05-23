@@ -13,14 +13,13 @@ using namespace std;
 
 int main()
 {
-   Personnages issam(1254, "pick"); // create 2 object of the type Personnage
-   Personnages hamza(144,"hamza"); // create 2 object of the type Personnage
+     short int i;           // a signed short integer
+   short unsigned int j;  // an unsigned short integer
 
-    issam.display();
-    hamza.display();
-    //cout << issam.m_vie << endl;
-    // issam.changerArme("charger l'arme", 50);
-    // issam.attaquer(David);
-    // issam.attaquer(issam);
+   j = 50000;
 
+   i = j;
+   cout << i << " " << j;
+
+   return 0;
 }

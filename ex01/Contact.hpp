@@ -7,17 +7,16 @@
 class Contact
 {
     private:
-        int m_index;
         std::string m_name;
         std::string m_secondName;
         std::string m_nickName;
         std::string m_phoneNumber;
     public:
         Contact();
-        void get_name()const;
-        void get_m_secondName()const;
-        void get_m_nickName()const;
-        void get_m_phoneNumber()const;
+        std::string get_name()const;
+        std::string get_m_secondName()const;
+        std::string get_m_nickName()const;
+        std::string get_m_phoneNumber()const;
 
         void set_name(std::string name);
         void set_m_secondName(std::string sendName);

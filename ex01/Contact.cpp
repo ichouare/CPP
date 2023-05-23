@@ -1,31 +1,31 @@
 #include "./Contact.hpp"
 
 using namespace std;
-// destuctor
+
 Contact::Contact()
 {
 
 }
 //geters functons
-void Contact::get_m_nickName() const
+string Contact::get_m_nickName() const
 {
-    cout << m_nickName << endl;
+    return m_nickName;
 }
 
-void Contact::get_m_phoneNumber() const
+string Contact::get_m_phoneNumber() const
 {
-    cout << m_phoneNumber << endl;
+    return m_phoneNumber;
 }
 
 
-void Contact::get_name() const
+string Contact::get_name() const
 {
-    cout << m_name << endl;
+   return m_name;
 }
 
-void Contact::get_m_secondName() const 
+string Contact::get_m_secondName() const 
 {
-    cout << m_phoneNumber << endl;
+   return m_secondName;
 }
 
 
@@ -35,7 +35,6 @@ void Contact::get_m_secondName() const
 void Contact::set_name(string name)
 {
     m_name = name;
-    m_index +=1;
 }
 
 void Contact::set_m_secondName(string secondName)

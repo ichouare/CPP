@@ -26,6 +26,7 @@ class Personnages
         void changerArme(std::string nomNouvelleArme, int degatsNouvelleArme);
         bool estVivant();
         void display();
+        bool estEgal(Personnages &cible) const;
 };
 
 #endif

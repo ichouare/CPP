@@ -18,8 +18,7 @@ int main(int argc, char **argv)
     while(i < argc)
     {
         console_char(argv[i]);
-        std :: cout << argv[i];
-        std :: cout << "\n";
+        std :: cout << argv[i] << "\n";
         i++;
     }
 

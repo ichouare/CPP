@@ -58,3 +58,8 @@ void Personnages::display()
     //cout << m_name << endl;
     m_Arme.affcher();
 }
+
+bool Personnages::estEgal(Personnages const& cible) const 
+{
+    if(m_vie == cible.m_vie)
+}

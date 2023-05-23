@@ -9,11 +9,14 @@ class Phonebook
 {
     private :
    Contact m_contact[8];
+   int m_numberofContact;
     public :
         Phonebook();
-        void ADD(std::string name, int index, std::string nameSecond , std::string nickname, std::string number);
+        void ADD();
         void SEARCH();
         void EXIT();
+        void get_contact(int index) const;
+        int get_index() const;
 };
 
 
