@@ -1,6 +1,5 @@
 #include "PhoneBook.hpp"
 
-using namespace std;
 Phonebook::Phonebook()
 {
     m_numberofContact = 0;
@@ -8,24 +7,23 @@ Phonebook::Phonebook()
 
 void Phonebook::ADD()
 {
-    string firstName;
-    string secondName;
-    string nickName;
-    string phone;
+    std::string firstName("");
+    std::string secondName("");
+    std::string nickName("");
+    std::string phone("");
 
-    cout << "name of user" << endl;
-    getline(cin >> ws, firstName);
-    cout << firstName << endl;
-    cout << "secondName of user" << endl;
-    getline(cin, secondName);
-    cout << "nickName of user" << endl;
-    getline(cin, nickName);
-    cout << "numberPhone of user" << endl;
-    getline(cin, phone);
+    std::cout << "name of user" << std::endl;
+    getline(std::cin >> std::ws, firstName);
+    std::cout << "secondName of user" << std::endl;
+    getline(std::cin, secondName);
+    std::cout << "nickName of user" << std::endl;
+    getline(std::cin, nickName);
+    std::cout << "numberPhone of user" << std::endl;
+    getline(std::cin, phone);
     m_contact[m_numberofContact].set_m_phoneNumber(phone);
 
-    if(!firstName ||  !secondName || !nickName || !phone)
-            cout << "contact not save : field empty" << endl;
+    if(!firstName.size() ||  !secondName.size() || !nickName.size() || !phone.size())
+            std::cout << "contact not save : field empty" << std::endl;
     else {
         m_contact[m_numberofContact].set_name(firstName);
         m_contact[m_numberofContact].set_m_secondName(secondName);
@@ -38,14 +36,15 @@ void Phonebook::ADD()
 void Phonebook::SEARCH()
 {
     int index;
-    cout << "enter index of contact" << "\n";
-    cin >> index;
+
+    std::cout << "enter index of contact" << "\n";
+    std::cin >> index;
     if((index < 1 && index > 9) || index > m_numberofContact + 1 || index < 0)
-            cout << "no much contact" << "\n";
+        std::cout << "no much contact" << "\n";
     else
-        {
-               this->get_contact(index);
-        }
+    {
+            this->get_contact(index);
+    }
 }
 void Phonebook::EXIT()
 {
@@ -59,9 +58,9 @@ int Phonebook::get_index() const
 
 void Phonebook::get_contact(int index) const 
 {
-    cout << "name is:  " << m_contact[index - 1].get_name();
-    cout << "secondName is:  " <<  m_contact[index - 1].get_m_secondName();
-    cout << "NickName is:  " <<  m_contact[index - 1].get_m_nickName();
-    cout << "numberPhone is:  " <<   m_contact[index - 1].get_m_phoneNumber();
-    cout << "\n";
+    std::cout << "name is:  " << m_contact[index - 1].get_name();
+    std::cout << "secondName is:  " <<  m_contact[index - 1].get_m_secondName();
+    std::cout << "NickName is:  " <<  m_contact[index - 1].get_m_nickName();
+    std::cout << "numberPhone is:  " <<   m_contact[index - 1].get_m_phoneNumber();
+    std::cout << "\n";
 }

@@ -1,15 +1,10 @@
 #include "PhoneBook.hpp"
 
 
-using namespace std;
 
-void help()
-{
-    cout << "for add New Contact infos Enter /ADD or add " << "\n";
-    cout << "for add New search Contact Enter /search  or search " << "\n";
-    cout << "for exit  Enter /exit or EXIT " << "\n";
-}
- void funcEnter(string& str, Phonebook *book)
+
+
+ void funcEnter(std::string str, Phonebook *book)
  {
     if (str == "ADD" || str == "add")
         book->ADD();
@@ -22,12 +17,12 @@ void help()
 
 int main()
 {
-    string func;
+    std::string func;
     Phonebook book;
     while(1)
     {
-    cout << "enter your chose :" << endl;
-    cin >> func;
+    std::cout << "enter your chose :" << std::endl;
+    std::cin >> func;
     funcEnter(func, &book);
     }
 

@@ -2,7 +2,7 @@
 #include <string>
 using namespace std;
 
-void console_char(string& buffer)
+void console_char(char *buffer)
 {
    int i = 0;
    while(buffer[i])
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
     while(i < argc)
     {
         console_char(argv[i]);
-        std :: cout << argv[i] << "\n";
+        std :: cout << argv[i];
         i++;
     }
 

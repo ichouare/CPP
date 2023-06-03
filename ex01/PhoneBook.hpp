@@ -8,8 +8,8 @@
 class Phonebook
 {
     private :
-   Contact m_contact[8];
-   int m_numberofContact;
+    Contact m_contact[8];
+    int m_numberofContact;
     public :
         Phonebook();
         void ADD();
