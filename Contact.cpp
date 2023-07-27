@@ -12,7 +12,7 @@
 
    int  Contact::get_contactId() const
     {
-        return m_idContact;
+        return m_idContact + 1;
     }
 
     std::string Contact::get_contactName() const
