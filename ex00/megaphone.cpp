@@ -1,26 +1,29 @@
 #include <iostream>
-#include <string>
+#include <string.h>
+
+
 using namespace std;
 
-void console_char(char *buffer)
+void ftConvert(char *str)
 {
-   int i = 0;
-   while(buffer[i])
-   {
-        if(buffer[i] >= 'a' && buffer[i] <= 'z')
-            buffer[i] -= 32;
-        i++;
-   }
+    int i = strlen(str);
+    while(i--)
+    {
+       str[i] = std::toupper(str[i]);
+    }
 }
-int main(int argc, char **argv)
+
+int main (int argc, char **argv)
 {
     int i = 1;
+    if (argc == 1)
+    {
+        return 1;
+    }
     while(i < argc)
     {
-        console_char(argv[i]);
-        std :: cout << argv[i];
+        ftConvert(argv[i]);
+        std::cout << argv[i] << " ";
         i++;
     }
-
-
-}
+}   

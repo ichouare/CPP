@@ -1,66 +1,146 @@
-#include "PhoneBook.hpp"
+#include "./PhoneBook.hpp"
 
-Phonebook::Phonebook()
-{
-    m_numberofContact = 0;
-}
-
-void Phonebook::ADD()
-{
-    std::string firstName("");
-    std::string secondName("");
-    std::string nickName("");
-    std::string phone("");
-
-    std::cout << "name of user" << std::endl;
-    getline(std::cin >> std::ws, firstName);
-    std::cout << "secondName of user" << std::endl;
-    getline(std::cin, secondName);
-    std::cout << "nickName of user" << std::endl;
-    getline(std::cin, nickName);
-    std::cout << "numberPhone of user" << std::endl;
-    getline(std::cin, phone);
-    m_contact[m_numberofContact].set_m_phoneNumber(phone);
-
-    if(!firstName.size() ||  !secondName.size() || !nickName.size() || !phone.size())
-            std::cout << "contact not save : field empty" << std::endl;
-    else {
-        m_contact[m_numberofContact].set_name(firstName);
-        m_contact[m_numberofContact].set_m_secondName(secondName);
-        m_contact[m_numberofContact].set_m_nickName(nickName);
-        m_contact[m_numberofContact].set_m_phoneNumber(phone);
-        if(m_numberofContact < 7)
-            m_numberofContact++;    
+int check_number(std::string number)
+{   
+    unsigned int i = 0;
+    if(number.empty())
+        return (1);
+    while(i < number.length() - 1)
+    {
+        if(i == 0 && (isdigit(number.at(i))  != 0 || number[i] == '+'))
+            i++;
+        else if(i != 0 && (isdigit(number.at(i))  != 0 || number[i] == ' '))
+            i++;
+        else
+            return (2);
     }
+    if(i == number.length() - 1)
+        return (1);
+    else
+        return (2);
 }
-void Phonebook::SEARCH()
-{
-    int index;
 
-    std::cout << "enter index of contact" << "\n";
-    std::cin >> index;
-    if((index < 1 && index > 9) || index > m_numberofContact + 1 || index < 0)
-        std::cout << "no much contact" << "\n";
+PhoneBook::PhoneBook():m_counter(0),m_len(0)
+{
+
+}
+int PhoneBook::get_index()const 
+{
+    return m_counter;
+}
+
+void PhoneBook::set_index()
+{
+  if(m_counter == 7)
+        m_counter = 0;
     else
     {
-            this->get_contact(index);
+        m_counter++;
+        m_len++;
+
     }
 }
-void Phonebook::EXIT()
+
+void PhoneBook::EXIT()
 {
-    exit(1);
+    exit(0);
 }
 
-int Phonebook::get_index() const
+
+void  PhoneBook::ADD()
 {
-    return m_numberofContact;
+    std::string name;
+    std::string lastName;
+    std::string nickName;
+    std::string number;
+    std::string Secret;
+
+    std::cout<< "fistName:";
+    std::getline(std::cin, name);
+    if(name.length() == 0 && std::cin.eof())
+        exit(0);
+    std::cout<< "lastName:";
+    std::getline(std::cin, lastName);
+    if(lastName.length() == 0 && std::cin.eof())
+        exit(0);
+    std::cout<< "NickName:";
+    std::getline(std::cin, nickName);
+    if(nickName.length() == 0 && std::cin.eof())
+        exit(0);
+    std::cout<<"Number:";
+    std::getline(std::cin, number);
+    if(number.length() == 0 && std::cin.eof())
+        exit(0);
+    while(check_number(number) != 1)
+    {
+        std::cout << "number phone  must be numeric" << std::endl;
+        std::cout<<"Number:";
+        std::getline(std::cin, number);
+        if(number.length() == 0 && std::cin.eof())
+            exit(0);
+    }
+    std::cout<<"darkestSecret:";
+    std::getline(std::cin, Secret);
+    if(Secret.length() == 0 && std::cin.eof())
+        exit(0);
+    if(name.length() && lastName.length() && nickName.length() &&  number.length() && Secret.length() )
+        {
+            m_contact[m_counter].set_contactId(m_counter);
+           m_contact[m_counter].set_contactFirstName(name);
+           m_contact[m_counter].set_contactLastName(lastName);
+           m_contact[m_counter].set_contactNickName(nickName);
+           m_contact[m_counter].set_contactNumber(number);
+           m_contact[m_counter].set_contactDarkestSecret(Secret);
+           this->set_index();
+           std::cout<< "save completed" << std::endl;
+        }
+    else
+    {
+        std::cout<< "sumbit not completed:empty filed" << std::endl;
+    }
+
+
+
 }
 
-void Phonebook::get_contact(int index) const 
+void PhoneBook::SEARCH()
 {
-    std::cout << "name is:  " << m_contact[index - 1].get_name();
-    std::cout << "secondName is:  " <<  m_contact[index - 1].get_m_secondName();
-    std::cout << "NickName is:  " <<  m_contact[index - 1].get_m_nickName();
-    std::cout << "numberPhone is:  " <<   m_contact[index - 1].get_m_phoneNumber();
-    std::cout << "\n";
+    int i = 0;
+    std::cout << "yours PHONE CONTACT : " << std::endl;
+    if(m_len == 0)
+        std::cout << "EMPTY" << std::endl;
+    else
+    {
+        int index = 0;
+    while(i < m_len)
+    {
+        std::cout << std::setw(5) <<  m_contact[i].get_contactId();
+        std::cout << " | ";
+        std::cout << std::setw(5) <<  m_contact[i].get_contactFirstName(1);
+        std::cout << " | ";
+        std::cout << std::setw(5) <<  m_contact[i].get_contactLastName(1);
+        std::cout << " | ";
+        std::cout << std::setw(5) <<  m_contact[i].get_contactNickName(1);
+        std::cout << std::endl;
+        i++;
+    }
+    while(index < 1 || index > 8)
+    {
+        std::cout << "Enter Index:";
+        std::cin >> index;
+        if(index < 1 || index  > 8)
+            std::cout << "index out of range " << std::endl;
+        else
+            {
+                std::cout << "id :" << std::setw(5) <<  m_contact[index - 1].get_contactId() << std::endl;
+                std::cout << "first Name:" <<  std::setw(5) <<  m_contact[index - 1].get_contactFirstName(2) << std::endl ;
+                std::cout << "last Name:" <<  std::setw(5) <<  m_contact[index - 1].get_contactLastName(2) << std::endl;
+                std::cout << "nickname:" <<  std::setw(5) <<  m_contact[index -1 ].get_contactNickName(2) << std::endl;
+                std::cout << "number:" <<  std::setw(5) <<  m_contact[index - 1 ].get_contactNumber() << std::endl;
+                std::cout << "nickname :" <<  std::setw(5) <<  m_contact[index - 1].get_contactDarkestSecret() << std::endl;
+            }
+        std::cin.ignore(1);
+    }
+        
+    }
 }

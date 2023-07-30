@@ -6,7 +6,7 @@
 #    By: ichouare <ichouare@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/25 16:35:46 by ichouare          #+#    #+#              #
-#    Updated: 2023/05/28 18:50:58 by ichouare         ###   ########.fr        #
+#    Updated: 2023/07/30 14:49:51 by ichouare         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ FLAGS =  -Wall -Wextra -Werror -std=c++98
 SRC = ./Contact.cpp ./PhoneBook.cpp ./main.cpp
 
 
-OBJ = $(SRCS:.cpp=.o)
+OBJ = $(SRC:.cpp=.o)
 
 all : $(NAME) 
 

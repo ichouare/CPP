@@ -1,32 +1,28 @@
-#include "PhoneBook.hpp"
-
-
-
-
-
- void funcEnter(std::string str, Phonebook *book)
- {
-    if (str == "ADD" || str == "add")
-        book->ADD();
-    else if (str == "SEARCH" || str == "search")
-       book->SEARCH();
-    else if (str == "exit" || str == "EXIT")
-      book->EXIT();
- }
+#include "./PhoneBook.hpp"
 
 
 int main()
 {
-    std::string func;
-    Phonebook book;
+    PhoneBook myPhoneBook;
+    std::string userPut;
+    std::cout << "welcome to Your PhoneBook" << std::endl;
+    std::cout << "To Add Contact Enter: ADD" << std::endl;
+    std::cout << "To Search Contact Enter: SEARCH" << std::endl;
+    std::cout << "To exit Enter: EXIT" << std::endl;
+
     while(1)
     {
-    std::cout << "enter your chose :" << std::endl;
-    std::cin >> func;
-    funcEnter(func, &book);
+        std::cout << "--------Enter Your chose-----------------" << std::endl;
+        getline(std::cin, userPut, '\n');
+        if(userPut.empty())
+            exit(0);
+       if(userPut == "ADD")
+            myPhoneBook.ADD();
+        else if(userPut == "SEARCH")
+            myPhoneBook.SEARCH();
+        else if(userPut == "EXIT")
+            myPhoneBook.EXIT();
+        else
+            std::cout<<"this option not found"<< std::endl;
+       } 
     }
-
-    
- 
-
-}

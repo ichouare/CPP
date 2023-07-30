@@ -1,22 +1,27 @@
-# ifndef PHONEBOOK_H
+#ifndef PHONEBOOK_H
 #define PHONEBOOK_H
+
 
 #include <string.h>
 #include <iostream>
+#include <ctype.h>
 #include "Contact.hpp"
+#include <iomanip>
 
-class Phonebook
-{
-    private :
-    Contact m_contact[8];
-    int m_numberofContact;
-    public :
-        Phonebook();
+
+class PhoneBook{
+    
+    public:
+        PhoneBook();
         void ADD();
         void SEARCH();
         void EXIT();
-        void get_contact(int index) const;
+        void set_index();
         int get_index() const;
+    private:
+    Contact m_contact[8];
+    int m_counter;
+    int m_len;
 };
 
 

@@ -1,27 +1,39 @@
-#ifndef CONTACT_H
-#define CONTACT_H
+#ifndef Contact_H
+#define Contact_H
 
-
-#include <string.h>
 #include <iostream>
-class Contact
-{
-    private:
-        std::string m_name;
-        std::string m_secondName;
-        std::string m_nickName;
-        std::string m_phoneNumber;
-    public:
-        Contact();
-        std::string get_name()const;
-        std::string get_m_secondName()const;
-        std::string get_m_nickName()const;
-        std::string get_m_phoneNumber()const;
+#include <string.h>
+#include "Contact.hpp"
 
-        void set_name(std::string name);
-        void set_m_secondName(std::string sendName);
-        void set_m_nickName(std::string nickName);
-        void set_m_phoneNumber(std::string number);
+class Contact 
+{
+    public:
+    Contact();
+    ~Contact();
+    int  get_contactId() const;
+    std::string get_contactFirstName(int n) const;
+    std::string get_contactLastName(int n) const;
+    std::string get_contactNickName(int n) const;
+    std::string get_contactNumber() const;
+    std::string get_contactDarkestSecret() const;
+
+    void set_contactId(int id);
+    void set_contactFirstName(std::string name);
+    void set_contactLastName(std::string lastName);
+    void set_contactNickName(std::string nickname);
+    void set_contactNumber(std::string number);
+    void set_contactDarkestSecret(std::string DarkestSecret);
+
+
+    //attributes
+    private:
+    int m_idContact; 
+    std::string m_firstName; 
+    std::string m_lastName; 
+    std::string m_nickName;
+    std::string m_number;
+    std::string m_darkestSecret;
+
 };
 
 #endif
