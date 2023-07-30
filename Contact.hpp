@@ -11,14 +11,14 @@ class Contact
         std::string m_name;
         std::string m_secondName;
         std::string m_nickName;
-        std::string m_phoneNumber;
+        string m_phoneNumber;
     public:
         Contact();
-        void get_name()const;
-        void get_m_secondName()const;
-        void get_m_nickName()const;
-        void get_m_phoneNumber()const;
-
+        void get_name() const;
+        void get_m_secondName() const;
+        void get_m_nickName() const;
+        void get_m_phoneNumber() const;
+ 
         void set_name(std::string name);
         void set_m_secondName(std::string sendName);
         void set_m_nickName(std::string nickName);
