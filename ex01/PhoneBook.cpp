@@ -5,7 +5,7 @@ int check_number(std::string number)
     unsigned int i = 0;
     if(number.empty())
         return (1);
-    while(i < number.length() - 1)
+    while(i < number.length())
     {
         if(i == 0 && (isdigit(number.at(i))  != 0 || number[i] == '+'))
             i++;
@@ -14,7 +14,7 @@ int check_number(std::string number)
         else
             return (2);
     }
-    if(i == number.length() - 1)
+    if(i == number.length())
         return (1);
     else
         return (2);
@@ -31,13 +31,13 @@ int PhoneBook::get_index()const
 
 void PhoneBook::set_index()
 {
+    if(m_len < 8)
+        m_len++;
   if(m_counter == 7)
         m_counter = 0;
     else
     {
         m_counter++;
-        m_len++;
-
     }
 }
 
@@ -106,41 +106,44 @@ void  PhoneBook::ADD()
 void PhoneBook::SEARCH()
 {
     int i = 0;
+    std::string index;
     std::cout << "yours PHONE CONTACT : " << std::endl;
     if(m_len == 0)
         std::cout << "EMPTY" << std::endl;
     else
     {
-        int index = 0;
     while(i < m_len)
     {
-        std::cout << std::setw(5) <<  m_contact[i].get_contactId();
-        std::cout << " | ";
-        std::cout << std::setw(5) <<  m_contact[i].get_contactFirstName(1);
-        std::cout << " | ";
-        std::cout << std::setw(5) <<  m_contact[i].get_contactLastName(1);
-        std::cout << " | ";
-        std::cout << std::setw(5) <<  m_contact[i].get_contactNickName(1);
+        std::cout << std::setw(10) <<  m_contact[i].get_contactId();
+        std::cout << "|";
+        std::cout << std::setw(10) <<  m_contact[i].get_contactFirstName(1);
+        std::cout << "|";
+        std::cout << std::setw(10) <<  m_contact[i].get_contactLastName(1);
+        std::cout << "|";
+        std::cout << std::setw(10) <<  m_contact[i].get_contactNickName(1);
         std::cout << std::endl;
         i++;
     }
-    while(index < 1 || index > 8)
+    while( index.length() > 1 ||  std::atoi(index.data()) > m_len || std::atoi(index.data()) < 1 || std::atoi(index.data()) > 8)
     {
         std::cout << "Enter Index:";
-        std::cin >> index;
-        if(index < 1 || index  > 8)
+        std::getline(std::cin, index);
+        std::cout << check_number(index);
+        if(index.empty())
+            exit(0);
+        else if( check_number(index) != 1 ||  std::atoi(index.data()) > m_len  ||  std::atoi(index.data()) < 1 || std::atoi(index.data())  > 8)
             std::cout << "index out of range " << std::endl;
         else
             {
-                std::cout << "id :" << std::setw(5) <<  m_contact[index - 1].get_contactId() << std::endl;
-                std::cout << "first Name:" <<  std::setw(5) <<  m_contact[index - 1].get_contactFirstName(2) << std::endl ;
-                std::cout << "last Name:" <<  std::setw(5) <<  m_contact[index - 1].get_contactLastName(2) << std::endl;
-                std::cout << "nickname:" <<  std::setw(5) <<  m_contact[index -1 ].get_contactNickName(2) << std::endl;
-                std::cout << "number:" <<  std::setw(5) <<  m_contact[index - 1 ].get_contactNumber() << std::endl;
-                std::cout << "nickname :" <<  std::setw(5) <<  m_contact[index - 1].get_contactDarkestSecret() << std::endl;
+                std::cout << "id:" << std::setw(5) <<  m_contact[std::atoi(index.data()) - 1].get_contactId() << std::endl;
+                std::cout << "first Name:" <<  std::setw(5) <<  m_contact[std::atoi(index.data()) - 1].get_contactFirstName(2) << std::endl ;
+                std::cout << "last Name:" <<  std::setw(5) <<  m_contact[std::atoi(index.data()) - 1].get_contactLastName(2) << std::endl;
+                std::cout << "nickname:" <<  std::setw(5) <<  m_contact[std::atoi(index.data()) - 1 ].get_contactNickName(2) << std::endl;
+                std::cout << "number:" <<  std::setw(5) <<  m_contact[std::atoi(index.data()) - 1 ].get_contactNumber() << std::endl;
+                std::cout << "nickname:" <<  std::setw(5) <<  m_contact[std::atoi(index.data()) - 1].get_contactDarkestSecret() << std::endl;
             }
-        std::cin.ignore(1);
     }
+        std::cin.clear();
         
     }
 }
